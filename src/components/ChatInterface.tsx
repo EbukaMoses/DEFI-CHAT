@@ -163,11 +163,11 @@ export default function ChatInterface() {
                         </div>
                         <div className="flex items-center space-x-1">
                             <Zap className="w-3 h-3" />
-                            <span>Starknet</span>
+                            <span>Mantle</span>
                         </div>
                         <div className="flex items-center space-x-1">
                             <TrendingUp className="w-3 h-3" />
-                            <span>Ekubo DEX</span>
+
                         </div>
                     </div>
                     <button

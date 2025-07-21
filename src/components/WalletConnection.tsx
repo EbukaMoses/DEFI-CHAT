@@ -35,14 +35,14 @@ export default function WalletConnection({ onOpenSwapModal, onOpenFiatModal }: W
 
                 <div className="flex items-center space-x-3">
                     {!connection.isConnected ? (
-                        // <button
-                        //     onClick={connect}
-                        //     disabled={isConnecting}
-                        //     className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-                        // >
-                        //     <Wallet className="w-4 h-4" />
-                        //     <span>{isConnecting ? 'Connecting...' : 'Connect Wallet'}</span>
-                        // </button>
+                        <button
+                            onClick={connect}
+                            disabled={isConnecting}
+                            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                        >
+                            <Wallet className="w-4 h-4" />
+                            <span>{isConnecting ? 'Connecting...' : 'Connect Wallet'}</span>
+                        </button>
 
                         <button
                             className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"

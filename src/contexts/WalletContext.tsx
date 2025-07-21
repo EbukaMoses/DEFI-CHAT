@@ -90,13 +90,15 @@ export function WalletProvider({ children }: WalletProviderProps) {
         try {
             // Check if wallet is available
             if (typeof window === 'undefined') {
-                throw new Error('Window not available');
+                throw new Error(' ');
+                // throw new Error('Window not available');
             }
 
             console.log('Checking for Starknet wallet...');
 
             if (!window.starknet) {
-                throw new Error('Starknet wallet not found. Please install ArgentX or Braavos.');
+                throw new Error(' ');
+                // throw new Error('Starknet wallet not found. Please install ArgentX or Braavos.');
             }
 
             const starknet = window.starknet;

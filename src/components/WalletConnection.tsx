@@ -1,17 +1,28 @@
 'use client';
 
 import { useWallet } from '@/contexts/WalletContext';
-import { Wallet, LogOut, User, ArrowUpDown, DollarSign, Shield, Copy } from 'lucide-react';
+import {
+    Wallet,
+    LogOut,
+    User,
+    ArrowUpDown,
+    DollarSign,
+    Shield,
+    Copy
+} from 'lucide-react';
 
 interface WalletConnectionProps {
     onOpenSwapModal?: () => void;
     onOpenFiatModal?: () => void;
 }
 
-export default function WalletConnection({ onOpenSwapModal, onOpenFiatModal }: WalletConnectionProps) {
+export default function WalletConnection({
+    onOpenSwapModal,
+    onOpenFiatModal
+}: WalletConnectionProps) {
     const { connection, connect, disconnect, isConnecting, error } = useWallet();
 
-    console.log('WalletConnection - Current connection state:', connection); // Debug log
+    console.log('WalletConnection - Current connection state:', connection);
 
     const formatAddress = (address: string) => {
         if (!address) return '';
@@ -28,31 +39,30 @@ export default function WalletConnection({ onOpenSwapModal, onOpenFiatModal }: W
                         </div>
                         <div>
                             <div className="text-lg font-bold text-white">DeFi Chat</div>
-                            <div className="text-xs text-gray-400">AI-Powered Trading Assistant</div>
+                            <div className="text-xs text-gray-400">
+                                AI-Powered Trading Assistant
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="flex items-center space-x-3">
                     {!connection.isConnected ? (
-                        <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                        <button
+                            onClick={connect}
+                            disabled={isConnecting}
+                            className="hidden flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                        >
+                            <Wallet className="w-4 h-4" />
+                            <span>{isConnecting ? 'Connecting...' : 'Connect Wallet'}</span>
+                        </button>
+                        <button
+                            
+                            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                         >Connect Wallet
                         </button>
                     ) : (
                         <div className="flex items-center space-x-3">
-
-                            <button
-                                onClick={connect}
-                                disabled={isConnecting}
-                                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-                            >
-                                <Wallet className="w-4 h-4" />
-                                <span>{isConnecting ? 'Connecting...' : 'Connect Wallet'}</span>
-                            </button>
-
-
-
-                            {/* Quick Action Buttons */}
                             <button
                                 onClick={onOpenSwapModal}
                                 className="flex items-center space-x-1 px-3 py-2 bg-gray-800/80 hover:bg-gray-700 border border-gray-700 text-gray-200 text-sm rounded-lg transition-all duration-200 hover:scale-105"
@@ -71,12 +81,15 @@ export default function WalletConnection({ onOpenSwapModal, onOpenFiatModal }: W
                                 <span>Fiat</span>
                             </button>
 
-                            {/* Wallet Info */}
                             <div className="flex items-center space-x-2 px-3 py-2 bg-gray-800/80 border border-gray-700 rounded-lg group">
                                 <User className="w-4 h-4 text-gray-400" />
-                                <span className="text-sm text-gray-200 font-mono">{formatAddress(connection.address)}</span>
+                                <span className="text-sm text-gray-200 font-mono">
+                                    {formatAddress(connection.address)}
+                                </span>
                                 <button
-                                    onClick={() => navigator.clipboard.writeText(connection.address || '')}
+                                    onClick={() =>
+                                        navigator.clipboard.writeText(connection.address || '')
+                                    }
                                     className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                                     title="Copy Address"
                                 >
@@ -101,7 +114,9 @@ export default function WalletConnection({ onOpenSwapModal, onOpenFiatModal }: W
                     <div className="flex items-center justify-between">
                         <span>{error}</span>
                         <button
-                            onClick={() => {/* clearError */ }}
+                            onClick={() => {
+                                // optionally clear error state if supported
+                            }}
                             className="text-red-400 hover:text-red-300 transition-colors duration-200"
                         >
                             <LogOut className="w-4 h-4" />
